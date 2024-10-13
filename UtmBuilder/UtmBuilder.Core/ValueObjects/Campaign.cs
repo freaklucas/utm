@@ -1,3 +1,5 @@
+using UtmBuilder.Core.ValueObjects.Exceptions;
+
 namespace UtmBuilder.Core.ValueObjects;
 
 public class Campaign : ValueObject
@@ -26,6 +28,10 @@ public class Campaign : ValueObject
         Id = id;
         Term = term;
         Content = content;
+
+        InvalidCampaignException.ThrowIfNull(source, "Source not found");
+        InvalidCampaignException.ThrowIfNull(medium, "Medium not found");
+        InvalidCampaignException.ThrowIfNull(name, "Name not found");
     }
 
     public string Source { get; }
